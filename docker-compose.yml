@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: taskpilot
+      POSTGRES_USER: taskpilot
+      POSTGRES_PASSWORD: taskpilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  langfuse:
+    image: langfuse/langfuse:2
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://taskpilot:taskpilot@postgres:5432/langfuse
+      NEXTAUTH_SECRET: secret
+      NEXTAUTH_URL: http://localhost:3000
+      SALT: salt
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

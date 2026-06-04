@@ -1,0 +1,9 @@
+name: code_run
+description: "执行 Python 代码片段并返回结果"
+tools:
+  - name: execute_python
+    description: "在沙箱中执行 Python 代码"
+    parameters:
+      code:
+        type: string
+        description: "要执行的 Python 代码"

@@ -1,0 +1,19 @@
+name: calendar
+description: "管理日历事件：创建、查询、删除日程安排"
+tools:
+  - name: create_event
+    description: "创建日历事件"
+    parameters:
+      title:
+        type: string
+      start_time:
+        type: string
+        description: "ISO 8601 格式时间"
+      duration_minutes:
+        type: integer
+  - name: list_events
+    description: "查询某天的日程"
+    parameters:
+      date:
+        type: string
+        description: "YYYY-MM-DD 格式"
