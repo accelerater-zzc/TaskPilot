@@ -3,7 +3,10 @@ description: "查询实时天气和天气预报"
 tools:
   - name: get_weather
     description: "获取指定城市的当前天气"
-    parameters:
-      city:
-        type: string
-        description: "城市名称，如：北京、上海"
+    input_schema:
+      type: object
+      properties:
+        city:
+          type: string
+          description: "城市名称，如：北京、上海"
+      required: [city]

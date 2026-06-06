@@ -1,9 +1,12 @@
 name: code_run
-description: "执行 Python 代码片段并返回结果"
+description: "在安全沙箱中执行 Python 代码片段并返回结果"
 tools:
   - name: execute_python
-    description: "在沙箱中执行 Python 代码"
-    parameters:
-      code:
-        type: string
-        description: "要执行的 Python 代码"
+    description: "在隔离沙箱（E2B）中执行 Python 代码，返回 stdout/stderr"
+    input_schema:
+      type: object
+      properties:
+        code:
+          type: string
+          description: "要执行的 Python 代码"
+      required: [code]
